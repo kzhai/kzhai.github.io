@@ -1,0 +1,59 @@
+% LaTeX resume using res.cls
+\documentclass[10pt]{res}
+
+%% \setlength{\topmargin}{-0.6in}  % Start text higher on the page 
+%% \setlength{\textheight}{9.8in}  % increase textheight to fit more on a page
+%% \setlength{\headsep}{0.2in}     % space between header and text
+%% \setlength{\headheight}{12pt}   % make room for header
+%% \usepackage{fancyhdr}  % use fancyhdr package to get 2-line header
+%% \renewcommand{\headrulewidth}{0pt} % suppress line drawn by default by fancyhdr
+%% \lhead{\hspace*{-\sectionwidth}Ke Zhai} % force lhead all the way left
+%% \rhead{Page \thepage}  % put page number at right
+%% \cfoot{}  % the footer is empty
+%% \pagestyle{fancy} % set pagestyle for the document
+
+\usepackage{helvet} % Default font is the helvetica postscript font
+%\usepackage{newcent} % To change the default font to the new century schoolbook postscript font uncomment this line and comment the one above
+%% \usepackage{times}
+
+\newsectionwidth{0pt} % Stops section indenting
+
+\begin{document} 
+%\thispagestyle{empty} % this page does not have a header
+\name{Ke Zhai}
+\vspace{0.1in}
+\address{
+  Machine Learning {$\enskip\cdotp\enskip$} Natural Language Processing {$\enskip\cdotp\enskip$} Cloud Computing\\
+  +1 (240)- 460-9082 {$\enskip\cdotp\enskip$} zhaikedavy@gmail.com {$\enskip\cdotp\enskip$} kzhai.github.io
+  %{$\enskip\cdotp\enskip$} www.linkedin.com/in/ke-zhai-93102355/
+}
+
+\begin{resume}
+  \vspace{0.1in}
+  % \moveleft.5\sectionwidth\centerline{Objective: Position as technical writer or editor.}  
+
+  \input{education}
+
+  \input{employment}
+
+  \input{publication}
+
+  \section{\centerline{PROFESSIONAL CONTRIBUTION}}
+  \vspace{0.1in}
+  Activate contributor for MapReduce library Cloud$^9$ and Hadoop toolkit Ivory.\\
+  Online released code-base on GitHub, https://github.com/kzhai.
+  \begin{itemize}
+  \item MapReduce latent Dirichlet allocation (Variational Beyesian
+    inference, with extension to informed prior and polylingual LDA).
+    \begin{quotation}
+      % The second comes out of the Cloud Computing Research Team based in the University of Maryland and is named Mr. LDA. \ldots 
+      ``I tried both and found that, despite \emph{Mr. LDA}'s cringeworthy name, it's much faster than \emph{Mahout}'s implementation so decided to go with that one.''\\
+      \vspace{1mm}
+      \hfill --- \textbf{Kris Jack}, BSc Hons, Ph.D., Chief Data Scientist, Mendeley
+    \end{quotation}
+  \item Latent Dirichlet allocation (Gibbs sampling, variational Bayesian inference and online version).
+  \item Non-parametric Bayesian models (Indian buffet process, hierarchical Dirichlet process and infinite Gaussian mixture model).
+  \end{itemize}
+
+\end{resume}
+\end{document}

@@ -1,0 +1,195 @@
+% LaTeX resume using res.cls
+\documentclass{style/resume}
+% \usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
+\usepackage{newcent}   % uses new century schoolbook postscript font  
+\usepackage{times}
+
+\setlength{\topmargin}{-0.6in}  % Start text higher on the page 
+\setlength{\textheight}{9.8in}  % increase textheight to fit more on a page
+\setlength{\headsep}{0.2in}     % space between header and text
+\setlength{\headheight}{12pt}   % make room for header
+\usepackage{fancyhdr}  % use fancyhdr package to get 2-line header
+\renewcommand{\headrulewidth}{0pt} % suppress line drawn by default by fancyhdr
+\lhead{\hspace*{-\sectionwidth}Ke Zhai} % force lhead all the way left
+\rhead{Page \thepage}  % put page number at right
+\cfoot{}  % the footer is empty
+\pagestyle{fancy} % set pagestyle for the document
+
+\begin{document} 
+\thispagestyle{empty} % this page does not have a header
+\name{Ke Zhai}
+\address{
+  % 3405 Tulane Dr., Apt. 24, Hyattsville, Maryland 20783\\
+  % 1281 Lawrence State Road, Apt 456, Sunnyvale, California 94089\\
+  Tel no.: (240) 460-9082\\
+  zhaikedavy@gmail.com\\
+  U.S. Permanent Resident
+}
+
+\begin{resume}
+  \vspace{0.1in}
+  % \moveleft.5\sectionwidth\centerline{Objective: Position as technical writer or editor.}  
+
+  \section{EDUCATION}
+  \vspace{0.1in}
+
+  Ph.D. in Computer Science, Department of Computer Science\\
+  {\bf University of Maryland, College Park, MD, 2014}\\
+  GPA: 3.9/4.0. Supervisor: Jordan Boyd-Graber and Jimmy Lin (co-supervised)\\
+  Research topic: Large Scale Inference for Probabilistic Bayesian Models
+
+  M.S. in Computer Science, Department of Computer Science\\
+  {\bf University of Maryland, College Park, MD, 2011}\\
+  GPA: 3.9/4.0. Supervisor: Jordan Boyd-Graber and Jimmy Lin (co-supervised)\\
+  Research topic: Variational Bayesian Inference of Latent Dirichlet Allocation in MapReduce\\
+  Master scholary paper: Using Variational Inference and MapReduce to Scale Topic Modeling
+
+  B.Eng. in Computer Engineering with first class honor, School of Computer Engineering\\
+  {\bf Nanyang Technological University, Singapore, 2009}\\
+  GPA: 4.65/5.0. Supervisor: Wee Keong Ng\\
+  Research topic: Privacy-Preserving Data Mining\\
+  Undergraduate thesis: An Embedded Caching Framework for Privacy-Preserving Data Mining
+
+  \section{EMPLOYMENT} 
+  \vspace{0.1in}
+  {\bf Research Scientist,} Yahoo! Labs, Sunnyvale, CA, Feb 2015 - present
+  \begin{itemize}
+  \item Research on query understanding and sequence tagging for
+    online Ads serving system.
+  \item Research on query classification and user intent prediction
+    for mobile search product.
+  \item Design and develop ``Chat Bot as a Service'' platform.
+  \end{itemize}
+
+  {\bf Graduate Research Assistant,} Department of Computer Science,
+  University of Maryland, College Park, MD, Sep 2010 - Jun 2014
+  \begin{itemize}
+  \item Academic Advisor: Jordan Boyd-Graber
+  \item Research Interest: Machine Learning, Non-parametric Bayesian
+    Learning, Cloud Computing
+  \item Design and implement online variational inference for adaptor grammars.
+  \item Design and implement online variational inference for topic models with infinite vocabulary.
+  \item Design and implement variational inference for latent Dirichlet allocation in MapReduce.
+  \item Design and implement variational inference for Indian buffet process in MapReduce.
+    % \item Enable variational inference for synthetic topic modelling system in MapReduce.
+  \end{itemize}
+
+  {\bf Research Intern} Yahoo! Labs, New York City, NY, Jun 2014 - Aug 2014
+  \begin{itemize}
+  \item Large scale unsupervised nonparametric models for user behavior analysis.
+  \end{itemize}
+
+  {\bf Research Intern} Microsoft Research, Redmond, WA, May 2013 - Aug 2013
+  \begin{itemize}
+  \item Mentor: Jason D. Williams
+  \item Design and implement three models in discovering latent structure in dialogues.
+  \item Achieve comparably well results against many other models on real datasets.
+  \end{itemize}
+
+  {\bf Software Engineering Intern,} comScore, Inc., Reston, VA, May 2010 - Aug 2010
+  \begin{itemize}
+  \item Implement data transfer and formatter block for new deployed Hadoop distributed file system.
+  \item Research and develop cookie deletion and prediction system for comScore.
+  \end{itemize}
+
+  {\bf Graduate Teaching Assistant,} Department of Computer Science, University of Maryland, College Park, MD, Sep 2009 - May 2010
+  \begin{itemize}
+  \item CMSC 131: Object-Oriented Programming I, Fall 2009.
+  \item CMSC 422: Introduction to Artificial Intelligence, Spring 2010.
+  \end{itemize}
+  
+  {\bf Software Engineering Industrial Attachment,} StarHub, Inc., Singapore, Jan 2008 - Jun 2008
+  \begin{itemize}
+  \item Study on customer service system and client feedback process.
+  \item Develop data collection and analyzing software for Customer Service.
+  \item Develop high-efficiency data processing system.
+  \item Database development and administration.
+  \item Design and develop reliable database system in MySQL for Customer Service.
+  \item Automate data processing and analyzing system with Microsoft Office and VBA.
+  \end{itemize}
+  
+  \section{PUBLICATIONS (* indicates equal contributor)} 
+  \vspace{0.1in}
+
+  {\bf Ke Zhai}, Yuening Hu, Hua Ouyang and Zornitsa
+  Kozareva. ``Dropout with Probabilistic Priors'', under
+  review.
+
+  {\bf Ke Zhai}, Yuening Hu and Jianhui Chen. ``Logistic Normal Topic
+  Models via Hessian-free Optimization'', under review.
+
+ Qi Li, Zornitsa Kozareva, and {\bf Ke Zhai}. ``Joint Entity
+ Extraction and Intent Detection based on LSTMs'', under review.
+
+  Weiwei Guo, Qi Li, {\bf Ke Zhai}, and Zornitsa Kozareva. ``Entity
+  Linking for Domain-Specific Queries without Mention
+  Annotation'', under review.
+
+  {\bf Ke Zhai}, Zornitsa Kozareva, Yuening Hu, Qi Li and Weiwei
+  Guo. ``Query to Knowledge: Unsupervised Entity Extraction from
+  Shopping Queries using Adaptor Grammars''. {\it International ACM
+    SIGIR Conference on Research and Development in Information
+    Retrieval} (SIGIR), Jul 2016.
+
+  Zornitsa Kozareva, Qi Li, {\bf Ke Zhai} and Weiwei
+  Guo. ``Recognizing Salient Entities in Shopping Queries''. {\it
+    Proceedings of the Annual Meeting of the Association for
+    Computational Linguistics} (ACL), Jun 2016.
+
+  {\bf Ke Zhai}, Jordan Boyd-Graber and Shay B. Cohen. ``Online
+  Adaptor Grammars with Hybrid Inference''. {\it Transaction of the Association
+    for Computational Linguistics} (TACL), Oct 2014.
+
+  {\bf Ke Zhai}, and Jason D. Williams. ``Discovering Latent Structure
+  in Task-Oriented Dialogues''. {\it Annual Meeting of the Association
+    for Computational Linguistics} (ACL), Jun 2014.
+
+  {\bf Ke Zhai}*, Yuening Hu*, Vladimir Edelman, and Jordan
+  Boyd-Graber. ``Polylingual Tree-Based Topic Models for Translation
+  Domain Adaptation''. {\it Annual Meeting of the Association for
+    Computational Linguistics} (ACL), Jun 2014.
+
+  {\bf Ke Zhai}, and Jordan Boyd-Graber. ``Online Latent Dirichlet
+  Allocation with Infinite Vocabulary''. {\it International Conference
+    on Machine Learning} (ICML), Jun 2013.
+
+  {\bf Ke Zhai}*, Yuening Hu*, Jordan Boyd-Graber, and Sinead
+  Williamson. ``Modeling Images using Transformed Indian Buffet
+  Processes''. {\it International Conference on Machine Learning}
+  (ICML), Jun 2012.
+
+  {\bf Ke Zhai}, Jordan Boyd-Graber, Nima Asadi, and Mohamad
+  Alkhouja. ``Mr. LDA: A Flexible Large Scale Topic Modeling Package
+  using Variational Inference in MapReduce''. {\it ACM International
+    Conference on World Wide Web} (WWW), Apr 2012.
+
+  {\bf Ke Zhai}, Wee Keong Ng, Andre Ricardo Herianto and Shuguo
+  Han. ``Speeding Up Secure Computations via Embedded Caching''. {\it
+    Proceedings of SIAM International Conference on Data Mining}
+  (SDM), Apr 2009.
+
+  \section{PROFESSIONAL CONTRIBUTION}
+  \vspace{0.1in}
+  Activate contributor for MapReduce library Cloud$^9$ and Hadoop toolkit Ivory.\\
+  Online released code-base on GitHub, https://github.com/kzhai.
+  \begin{itemize}
+  \item MapReduce latent Dirichlet allocation (Variational Bayesian
+    inference, with extension to informed prior and polylingual LDA).
+    \begin{quotation}
+      % The second comes out of the Cloud Computing Research Team based in the University of Maryland and is named Mr. LDA. \ldots 
+      ``I tried both and found that, despite \emph{Mr. LDA}'s cringeworthy name, it's much faster than \emph{Mahout}'s implementation so decided to go with that one.''\\
+      \vspace{1mm}
+      \hfill --- \textbf{Kris Jack}, BSc Hons, Ph.D., Chief Data Scientist, Mendeley
+    \end{quotation}
+  \item Latent Dirichlet allocation (Gibbs sampling, variational Bayesian inference and online version).
+  \item Non-parametric Bayesian models (Indian buffet process, hierarchical Dirichlet process and infinite Gaussian mixture model).
+  \end{itemize}
+
+  \section{PROFESSIONAL SKILLS}
+  \vspace{0.1in}
+  Java, Python, Matlab, MapReduce, Hadoop, Spark\\
+  Linux, Windows, Mac OS X\\
+  Microsoft Office, Eclipse, NetBeans, Emacs, Photoshop
+
+\end{resume}
+\end{document}
