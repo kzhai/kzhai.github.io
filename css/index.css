@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #007AFF;
+    --primary-hover: #0063CC;
+    --background: #ffffff;
+    --text: #1d1d1f;
+    --text-muted: #86868b;
+    --secondary-bg: #f5f5f7;
+    --border: #d2d2d7;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+    --max-width: 1000px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #000000;
+        --text: #f5f5f7;
+        --text-muted: #a1a1a6;
+        --secondary-bg: #1c1c1e;
+        --border: #38383a;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; border-bottom: 2px solid var(--primary); display: inline-block; margin-bottom: 2rem; padding-bottom: 0.5rem; }
+h3 { font-size: 1.5rem; margin-top: 1.5rem; }
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Header & Hero */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid var(--primary);
+    box-shadow: var(--card-shadow);
+}
+
+.contact-info {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.cv-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.cv-link:hover {
+    background-color: var(--primary-hover);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Sections */
+section {
+    margin-bottom: 4rem;
+}
+
+.posts-wrapper {
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+.list-item {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--border);
+    transition: border-color 0.2s ease;
+}
+
+.list-item:hover {
+    border-left-color: var(--primary);
+}
+
+.list-item em {
+    display: block;
+    color: var(--text-muted);
+    font-style: normal;
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+/* Publication Card */
+.pub-card {
+    background: var(--secondary-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pub-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow);
+}
+
+.pub-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.pub-authors {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.pub-venue {
+    font-style: italic;
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+
+.pub-links {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--border);
+    color: var(--text);
+    transition: background-color 0.2s ease;
+}
+
+.badge:hover {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    header { margin-bottom: 2rem; }
+    .profile-img { width: 140px; height: 140px; }
+}
