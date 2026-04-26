@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math - Ke Zhai</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        .pi-app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .pi-app h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
+        .pi-app p.description {
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 480px;
+            font-size: 0.95rem;
+        }
+
+        #dartCanvas {
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            background: var(--secondary-bg);
+            display: block;
+        }
+
+        .pi-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-box {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .stat-box .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-box .stat-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+            color: var(--text);
+        }
+
+        .stat-box.pi-estimate .stat-value {
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+
+        .pi-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pi-btn {
+            padding: 0.6rem 1.4rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+            font-family: var(--font-main);
+        }
+
+        .pi-btn:active {
+            transform: scale(0.97);
+        }
+
+        .pi-btn.throw {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .pi-btn.throw:hover {
+            background: var(--primary-hover);
+        }
+
+        .pi-btn.fast-forward {
+            background: var(--secondary-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .pi-btn.fast-forward:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .pi-btn.fast-forward.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .pi-btn.reset {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .pi-btn.reset:hover {
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">KZ</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="math.html" class="active">Math</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Math</h1>
+        </header>
+
+        <main>
+            <div class="pi-app">
+                <h2>Estimating π via Dart Throwing</h2>
+                <p class="description">
+                    A circle of radius 1 sits inside a 2×2 square. Darts land uniformly at random.
+                    Since the circle's area is π and the square's area is 4, the fraction of darts inside
+                    the circle converges to π/4 — so π ≈ 4 × (inside / total).
+                </p>
+
+                <canvas id="dartCanvas" width="400" height="400"></canvas>
+
+                <div class="pi-stats">
+                    <div class="stat-box">
+                        <div class="stat-label">Total Thrown</div>
+                        <div class="stat-value" id="statTotal">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Inside Circle</div>
+                        <div class="stat-value" id="statInside">0</div>
+                    </div>
+                    <div class="stat-box pi-estimate">
+                        <div class="stat-label">π estimate</div>
+                        <div class="stat-value" id="statPi">—</div>
+                    </div>
+                </div>
+
+                <div class="pi-controls">
+                    <button class="pi-btn throw" onclick="throwDarts(1)">Throw</button>
+                    <button class="pi-btn fast-forward" id="ffBtn" onclick="toggleFastForward()">⏩ Fast Forward</button>
+                    <button class="pi-btn reset" onclick="reset()">Reset</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('dartCanvas');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+        const FADE_MS = 1800;
+
+        let total = 0;
+        let inside = 0;
+        let ffRunning = false;
+        let dots = [];
+
+        function drawBackground() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            ctx.fillStyle = isDark ? '#1c1c1e' : '#f5f5f7';
+            ctx.fillRect(0, 0, W, H);
+
+            ctx.beginPath();
+            ctx.arc(W / 2, H / 2, W / 2, 0, Math.PI * 2);
+            ctx.fillStyle = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+            ctx.fill();
+            ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.2)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        function throwDarts(n) {
+            const now = performance.now();
+            for (let i = 0; i < n; i++) {
+                const x = Math.random() * 2 - 1;
+                const y = Math.random() * 2 - 1;
+                const hit = x * x + y * y <= 1;
+                total++;
+                if (hit) inside++;
+                dots.push({ cx: (x + 1) / 2 * W, cy: (y + 1) / 2 * H, hit, born: now });
+            }
+            updateStats();
+        }
+
+        function renderLoop(now) {
+            if (ffRunning) throwDarts(50);
+
+            drawBackground();
+
+            const alive = [];
+            for (const dot of dots) {
+                const age = now - dot.born;
+                if (age >= FADE_MS) continue;
+                ctx.globalAlpha = 1 - age / FADE_MS;
+                ctx.beginPath();
+                ctx.arc(dot.cx, dot.cy, 3, 0, Math.PI * 2);
+                ctx.fillStyle = dot.hit ? '#34C759' : '#FF3B30';
+                ctx.fill();
+                alive.push(dot);
+            }
+            ctx.globalAlpha = 1;
+            dots = alive;
+
+            requestAnimationFrame(renderLoop);
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').textContent = total.toLocaleString();
+            document.getElementById('statInside').textContent = inside.toLocaleString();
+            document.getElementById('statPi').textContent =
+                total > 0 ? (4 * inside / total).toFixed(5) : '—';
+        }
+
+        function toggleFastForward() {
+            ffRunning ? stopFastForward() : startFastForward();
+        }
+
+        function startFastForward() {
+            ffRunning = true;
+            const btn = document.getElementById('ffBtn');
+            btn.textContent = '⏸ Pause';
+            btn.classList.add('active');
+        }
+
+        function stopFastForward() {
+            ffRunning = false;
+            const btn = document.getElementById('ffBtn');
+            btn.textContent = '⏩ Fast Forward';
+            btn.classList.remove('active');
+        }
+
+        function reset() {
+            stopFastForward();
+            total = 0;
+            inside = 0;
+            dots = [];
+            updateStats();
+        }
+
+        requestAnimationFrame(renderLoop);
+    </script>
+
+</body>
+</html>
